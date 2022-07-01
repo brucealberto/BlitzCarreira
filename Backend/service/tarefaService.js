@@ -11,7 +11,19 @@ const create = async (name, quantiy) => {
   return tarefa;
 };
 
+const getById = async (id) => {
+  const tarefa = await model.getById(id);
+  return tarefa;
+};
+
+const update = async (name, quantity, id) => {
+  const tarefa = await model.update(name, quantity, id);
+  return tarefa;
+};
+
 module.exports = {
   getAll,
   create,
+  getById,
+  update,
 };
