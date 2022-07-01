@@ -25,9 +25,16 @@ const update = async (req, res) => {
   return res.status(StatusCodes.OK).json({ id, name, quantity });
 };
 
+const deleteTask = async (req, res) => {
+  const { id } = req.params;
+  await service.deleteTask(id);
+  return res.status(StatusCodes.NO_CONTENT).end();
+};
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
+  deleteTask,
 };

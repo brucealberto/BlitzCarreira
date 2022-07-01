@@ -21,9 +21,15 @@ const update = async (name, quantity, id) => {
   return tarefa;
 };
 
+const deleteTask = async (id) => {
+  const tarefa = await model.deleteTask(id);
+  return tarefa;
+};
+
 module.exports = {
   getAll,
   create,
   getById,
   update,
+  deleteTask,
 };
