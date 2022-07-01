@@ -21,8 +21,8 @@ const getById = async (req, res) => {
 const update = async (req, res) => {
   const { id } = req.params;
   const { name, quantity } = req.body;
-  const tarefa = await service.update(name, quantity, id);
-  return res.status(StatusCodes.OK).json(tarefa);
+  await service.update(name, quantity, id);
+  return res.status(StatusCodes.OK).json({ id, name, quantity });
 };
 
 module.exports = {
