@@ -31,7 +31,6 @@ const update = async (name, quantity, id) => {
 const deleteTask = async (id) => {
   const query = 'DELETE FROM tarefas WHERE id = ?';
   const [result] = await connection.execute(query, [id]);
-  console.log('🚀 ~ file: Tarefa.js ~ line 34 ~ delete ~ result', result);
   return result;
 };
 
