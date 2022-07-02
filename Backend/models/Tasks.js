@@ -1,12 +1,12 @@
 const connection = require('./connection');
 
-const getAll = async () => {
+const getAllTasks = async () => {
   const query = 'SELECT * FROM tarefas';
   const [result] = await connection.execute(query);
   return result;
 };
 
-const create = async (name, quantity) => {
+const createTasks = async (name, quantity) => {
   const query = 'INSERT INTO tarefas(name, quantity) VALUES(?, ?)';
   const [result] = await connection.execute(query, [name, quantity]);
   return {
@@ -16,28 +16,28 @@ const create = async (name, quantity) => {
   };
 };
 
-const getById = async (id) => {
+const getByIdTasks = async (id) => {
   const query = 'SELECT * FROM tarefas WHERE id = ?';
   const [result] = await connection.execute(query, [id]);
   return result;
 };
 
-const update = async (name, quantity, id) => {
+const updateTasks = async (name, quantity, id) => {
   const query = 'UPDATE tarefas SET name = ?, quantity = ? WHERE id = ?';
   const [result] = await connection.execute(query, [name, quantity, id]);
   return result;
 };
 
-const deleteTask = async (id) => {
+const deleteTasks = async (id) => {
   const query = 'DELETE FROM tarefas WHERE id = ?';
   const [result] = await connection.execute(query, [id]);
   return result;
 };
 
 module.exports = {
-  getAll,
-  create,
-  getById,
-  update,
-  deleteTask,
+  getAllTasks,
+  createTasks,
+  getByIdTasks,
+  updateTasks,
+  deleteTasks,
 };

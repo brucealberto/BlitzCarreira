@@ -1,18 +1,18 @@
 const { Router } = require('express');
 const {
-  getAll, create, getById, update, deleteTask,
-} = require('./controller/tarefaController');
+  getAllTasks, createTasks, getByIdTasks, updateTasks, deleteTasks,
+} = require('./controllers/tasksControllers');
 
 const routes = Router();
 
-routes.get('/tarefa', getAll);
+routes.get('/tasks', getAllTasks);
 
-routes.post('/tarefa', create);
+routes.post('/tasks', createTasks);
 
-routes.get('/tarefa/:id', getById);
+routes.get('/tasks/:id', getByIdTasks);
 
-routes.put('/tarefa/:id', update);
+routes.put('/tasks/:id', updateTasks);
 
-routes.delete('/tarefa/:id', deleteTask);
+routes.delete('/tasks/:id', deleteTasks);
 
 module.exports = routes;
