@@ -16,6 +16,12 @@ const createTasks = async (name, quantity) => {
   };
 };
 
+const findTasksByName = async (name) => {
+  const query = 'SELECT * FROM tarefas WHERE name = ?';
+  const [result] = await connection.execute(query, [name]);
+  return result;
+};
+
 const getByIdTasks = async (id) => {
   const query = 'SELECT * FROM tarefas WHERE id = ?';
   const [result] = await connection.execute(query, [id]);
@@ -40,4 +46,5 @@ module.exports = {
   getByIdTasks,
   updateTasks,
   deleteTasks,
+  findTasksByName,
 };

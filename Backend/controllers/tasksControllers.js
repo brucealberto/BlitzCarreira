@@ -7,9 +7,13 @@ const getAllTasks = async (req, res) => {
 };
 
 const createTasks = async (req, res) => {
-  const { name, quantity } = req.body;
-  const tarefa = await services.createTasks(name, quantity);
-  return res.status(StatusCodes.CREATED).json(tarefa);
+  try {
+    const { name, quantity } = req.body;
+    const tarefa = await services.createTasks(name, quantity);
+    return res.status(StatusCodes.CREATED).json(tarefa);
+  } catch (error) {
+    return res.status(StatusCodes.CONFLICT).json(error.message);
+  }
 };
 
 const getByIdTasks = async (req, res) => {
@@ -19,16 +23,24 @@ const getByIdTasks = async (req, res) => {
 };
 
 const updateTasks = async (req, res) => {
-  const { id } = req.params;
-  const { name, quantity } = req.body;
-  await services.updateTasks(name, quantity, id);
-  return res.status(StatusCodes.OK).json({ id, name, quantity });
+  try {
+    const { id } = req.params;
+    const { name, quantity } = req.body;
+    await services.updateTasks(name, quantity, id);
+    return res.status(StatusCodes.OK).json({ id, name, quantity });
+  } catch (error) {
+    return res.status(StatusCodes.NOT_FOUND).json(error.message);
+  }
 };
 
 const deleteTasks = async (req, res) => {
-  const { id } = req.params;
-  await services.deleteTasks(id);
-  return res.status(StatusCodes.NO_CONTENT).end();
+  try {
+    const { id } = req.params;
+    await services.deleteTasks(id);
+    return res.status(StatusCodes.NO_CONTENT).end();
+  } catch (error) {
+    return res.status(StatusCodes.NOT_FOUND).json(error.message);
+  }
 };
 
 module.exports = {
