@@ -1,41 +1,41 @@
 const connection = require('./connection');
 
 const getAllTasks = async () => {
-  const query = 'SELECT * FROM tarefas';
+  const query = 'SELECT * FROM tasks';
   const [result] = await connection.execute(query);
   return result;
 };
 
-const createTasks = async (name, quantity) => {
-  const query = 'INSERT INTO tarefas(name, quantity) VALUES(?, ?)';
-  const [result] = await connection.execute(query, [name, quantity]);
+const createTasks = async (tasks, completed) => {
+  const query = 'INSERT INTO tasks(tasks, completed) VALUES(?, ?)';
+  const [result] = await connection.execute(query, [tasks, completed]);
   return {
     id: result.insertId,
-    name,
-    quantity,
+    tasks,
+    completed,
   };
 };
 
-const findTasksByName = async (name) => {
-  const query = 'SELECT * FROM tarefas WHERE name = ?';
-  const [result] = await connection.execute(query, [name]);
+const findTasks = async (task) => {
+  const query = 'SELECT * FROM tasks WHERE tasks = ?';
+  const [result] = await connection.execute(query, [task]);
   return result;
 };
 
 const getByIdTasks = async (id) => {
-  const query = 'SELECT * FROM tarefas WHERE id = ?';
+  const query = 'SELECT * FROM tasks WHERE id = ?';
   const [result] = await connection.execute(query, [id]);
   return result;
 };
 
-const updateTasks = async (name, quantity, id) => {
-  const query = 'UPDATE tarefas SET name = ?, quantity = ? WHERE id = ?';
-  const [result] = await connection.execute(query, [name, quantity, id]);
+const updateTasks = async (tasks, completed, id) => {
+  const query = 'UPDATE tasks SET tasks = ?, completed = ? WHERE id = ?';
+  const [result] = await connection.execute(query, [tasks, completed, id]);
   return result;
 };
 
 const deleteTasks = async (id) => {
-  const query = 'DELETE FROM tarefas WHERE id = ?';
+  const query = 'DELETE FROM tasks WHERE id = ?';
   const [result] = await connection.execute(query, [id]);
   return result;
 };
@@ -46,5 +46,5 @@ module.exports = {
   getByIdTasks,
   updateTasks,
   deleteTasks,
-  findTasksByName,
+  findTasks,
 };

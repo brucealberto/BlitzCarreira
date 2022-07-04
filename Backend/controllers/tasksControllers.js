@@ -2,15 +2,15 @@ const { StatusCodes } = require('http-status-codes');
 const services = require('../services/tasksServices');
 
 const getAllTasks = async (req, res) => {
-  const tarefa = await services.getAllTasks();
-  return res.status(StatusCodes.OK).json(tarefa);
+  const tasks = await services.getAllTasks();
+  return res.status(StatusCodes.OK).json(tasks);
 };
 
 const createTasks = async (req, res) => {
   try {
-    const { name, quantity } = req.body;
-    const tarefa = await services.createTasks(name, quantity);
-    return res.status(StatusCodes.CREATED).json(tarefa);
+    const { tasks, completed } = req.body;
+    const task = await services.createTasks(tasks, completed);
+    return res.status(StatusCodes.CREATED).json(task);
   } catch (error) {
     return res.status(StatusCodes.CONFLICT).json(error.message);
   }
@@ -18,16 +18,16 @@ const createTasks = async (req, res) => {
 
 const getByIdTasks = async (req, res) => {
   const { id } = req.params;
-  const tarefa = await services.getByIdTasks(id);
-  return res.status(StatusCodes.OK).json(tarefa);
+  const tasks = await services.getByIdTasks(id);
+  return res.status(StatusCodes.OK).json(tasks);
 };
 
 const updateTasks = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, quantity } = req.body;
-    await services.updateTasks(name, quantity, id);
-    return res.status(StatusCodes.OK).json({ id, name, quantity });
+    const { tasks, completed } = req.body;
+    await services.updateTasks(tasks, completed, id);
+    return res.status(StatusCodes.OK).json({ id, tasks, completed });
   } catch (error) {
     return res.status(StatusCodes.NOT_FOUND).json(error.message);
   }
