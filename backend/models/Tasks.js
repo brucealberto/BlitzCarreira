@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const getAllTasks = async () => {
-  const query = 'SELECT * FROM tasks';
+  const query = 'SELECT id, tasks, IF(completed, "true", "false") completed FROM tasks';
   const [result] = await connection.execute(query);
   return result;
 };

@@ -9,8 +9,8 @@ const getAllTasks = async (req, res) => {
 const createTasks = async (req, res) => {
   try {
     const { tasks, completed } = req.body;
-    const task = await services.createTasks(tasks, completed);
-    return res.status(StatusCodes.CREATED).json(task);
+    const result = await services.createTasks(tasks, completed);
+    return res.status(StatusCodes.CREATED).json(result);
   } catch (error) {
     return res.status(StatusCodes.CONFLICT).json(error.message);
   }
@@ -18,8 +18,8 @@ const createTasks = async (req, res) => {
 
 const getByIdTasks = async (req, res) => {
   const { id } = req.params;
-  const tasks = await services.getByIdTasks(id);
-  return res.status(StatusCodes.OK).json(tasks);
+  const result = await services.getByIdTasks(id);
+  return res.status(StatusCodes.OK).json(result);
 };
 
 const updateTasks = async (req, res) => {
