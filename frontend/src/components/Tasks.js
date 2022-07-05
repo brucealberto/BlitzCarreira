@@ -30,6 +30,5 @@ export default Tasks;
 //     const {data} = await createTasks(currentTask)
 //     tasks.push(data)
 //   return  setTasks(tasks, setCurrentTask(''))
-// deploy
 
 // }
