@@ -10,7 +10,7 @@ function Tasks() {
       setTasks(data);
     })();
   }, []);
-  
+
   return (
     <h2>
       {tasks.map((t) => (
