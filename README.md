@@ -29,6 +29,7 @@
 - $ docker run --name some-mysql -p 3306:3306 -e MYSQL_PASSWORD=password -e MYSQL_USER=root -d mysql:5.7
 - $ docker container start some-mysql
 - no mysql workbench Username=root password=password
+> Observação : o banco está vazio, insira dados utilizando a rota post do backend.
 
 ### Iniciando Frontend.
 
